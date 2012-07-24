@@ -1,0 +1,4 @@
+
+Try :
+	make (executable will be append)
+	make install (install into /usr/bin/)

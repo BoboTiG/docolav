@@ -1,0 +1,5 @@
+For source compilation you need OpenCV headers :
+	* libhighgui
+
+For Debian GNU/Linux :
+	aptitude install libhighgui-dev

@@ -1,0 +1,8 @@
+
+*** 0.1 (20120206)
+	+ added --output-format option
+	- removed --quiet option
+
+
+*** 0.1a (20120131)
+	+ first version
