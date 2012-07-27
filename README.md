@@ -19,11 +19,12 @@ Requirements
 
 For source compilation you need OpenCV headers :
 
+* libopencv
 * libhighgui
 
 For Debian GNU/Linux :
 
-	aptitude install libhighgui-dev
+	aptitude install libopencv-dev libhighgui-dev
 
 
 
