@@ -1,8 +1,14 @@
 
+*** 0.2 (20120806)
+	+ traduction en français
+	+ ajout du binaire pour GNU/Linux 64 bits
+	^ corrections diverses dans le fichier Makefile
+
+
 *** 0.1 (20120206)
-	+ added --output-format option
-	- removed --quiet option
+	+ ajout de l'option --output-format
+	- suppression de l'option --quiet
 
 
 *** 0.1a (20120131)
-	+ first version
+	+ premier jet

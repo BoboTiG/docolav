@@ -1,11 +1,11 @@
 
 /* =============================================================== */
-/*	$Author: BoboTiG <bobotig@gmail.com> $                         */
-/*	$Id: docolav $                                                 */
-/*	$Revision: 1 $, $Date: 2012/02/06 $                            */
-/*	$Source: http://www.bobotig.fr $, $Date: 2012/01/31 $          */
+/*  $Author: BoboTiG <bobotig@gmail.com> $                         */
+/*  $Id: docolav $                                                 */
+/*  $Revision: 2 $, $Date: 2012/08/06 $                            */
+/*  $Source: http://www.bobotig.fr $, $Date: 2012/01/31 $          */
 /*                                                                 */
-/*	docolav is a tool to get the dominant color average of a pic.  */
+/*  docolav détermine la couleur moyenne dominante d'une image.    */
 /* =============================================================== */
 
 
@@ -17,7 +17,7 @@ using namespace std;
 
 
 // Constantes
-#define VERSION "0.1"
+#define VERSION "0.2"
 
 
 // Prototypes
@@ -40,8 +40,10 @@ int main(int argc, char *argv[]) {
 	arg1 = argv[1];
 	if ( arg1 == "-h" || arg1 == "--help" ) {
 		help();
+		return EXIT_SUCCESS;
 	} else if ( arg1 == "-v" || arg1 == "--version" ) {
 		version();
+		return EXIT_SUCCESS;
 	} else if ( arg1 == "-of" || arg1 == "--output-format" ) {
 		of = 1;
 		if ( argc != 4 ) {
@@ -50,7 +52,7 @@ int main(int argc, char *argv[]) {
 		}
 		format = argv[2];
 		if ( format != "rgb" && format != "hex" && format != "html" ) {
-			cout << "Available ofrmats are rgb, hex and html." << endl;
+			cout << "Formats disponibles : rgb, hex et html." << endl;
 			return EXIT_FAILURE;
 		}
 		img = argv[3];
@@ -58,26 +60,26 @@ int main(int argc, char *argv[]) {
 		img = arg1;
 	}
 	
-	// Load the picture and get its informations
+	// Chargement de l'image
 	picture = cvLoadImage(img.c_str(), CV_LOAD_IMAGE_UNCHANGED);
 	if ( ! picture ) {
-		cout << "Could not load picture file: " << img << endl;
+		cout << "Impossible de charger l'image : " << img << endl;
 		return EXIT_FAILURE;
 	}
 	
 	// Affichage de la bête
-	/*cvNamedWindow("une_window");
-	cvShowImage("une_window", picture);
+	/*cvNamedWindow("une_fentere");
+	cvShowImage("une_fentere", picture);
 	cvWaitKey();
-	cvDestroyWindow("une_window");
+	cvDestroyWindow("une_fentere");
 	return 0;
 	//*/
 	
-	// Get all pixels values
+	// Récupération des tous les pixels
 	height = picture->height;
 	width  = picture->width;
-	for ( unsigned int x = 0; x < width; ++x) {
-		for ( unsigned int y = 0; y < height; ++y) {
+	for ( unsigned int x = 0; x < width; ++x ) {
+		for ( unsigned int y = 0; y < height; ++y ) {
 			uchar* ptr = cvPtr2D(picture, y, x, NULL);
 			r += (int) ptr[2];
 			g += (int) ptr[1];
@@ -96,9 +98,9 @@ int main(int argc, char *argv[]) {
 		else if ( format == "hex" ) printf("HEX(%02X,%02X,%02X)", r, g, b);
 		else                        printf("#%02X%02X%02X", r, g, b);
 	} else {
-		cout << "File      : " << img << endl;
-		cout << "Dimensions: " << width << " * " << height << " px" << endl;
-		cout << "Dominant color average" << endl;
+		cout << "Fichier    : " << img << endl;
+		cout << "Dimensions : " << width << " * " << height << " px" << endl;
+		cout << "Couleur moyenne dominante" << endl;
 		printf("    RGB(%d,%d,%d)\n", r, g, b);
 		printf("    HEX(%02X,%02X,%02X)\n", r, g, b);
 		printf("    #%02X%02X%02X\n", r, g, b);
@@ -114,25 +116,25 @@ docolav comes with ABSOLUTELY NO WARRANTY.\n\
 This is free software, and you are welcome to redistribute it under \n\
 certain conditions. See the GNU General Public Licence for details.\n\
 \n\
-docolav is a tool to get the dominant color average of a picture.\n\
+docolav détermine la couleur moyenne dominante d'une image.\n\
 \n\
-Usage : docolav [OPTION [VALUE]] FILE\n\
+Usage : docolav [OPTION [VALEUR]] FICHIER\n\
 \n\
 Options :\n\
- -h,  --help			display this message\n\
- -of, --output-format	output format: rgb, hex or html\n\
- -v,  --version			print tools version\n\
+ -h,  --help		affiche ce message\n\
+ -of, --output-format	format de sortie : rgb, hex ou html\n\
+ -v,  --version		affiche les versions du programme et d'OpenCV\n\
 \n\
-Report bugs, suggestions and comments to <bobotig@gmail.com>." << endl;
+Rapporter erreurs, suggestions et commentaires à <bobotig@gmail.com>." << endl;
 }
 
 
 void usage() {
-	cout << "Usage : docolav [OPTION [VALUE]] FILE" << endl;
+	cout << "Usage : docolav [OPTION [VALEUR]] FICHIER" << endl;
 }
 
 
 void version() {
 	cout << "docolav v" << VERSION << "." << endl;
-	cout << "OpenCV library v" << CV_VERSION << "." << endl;
+	cout << "OpenCV v" << CV_VERSION << "." << endl;
 }
