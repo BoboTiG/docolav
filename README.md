@@ -4,7 +4,7 @@ docolav
 
 Copyright (C) 2012 by BoboTiG.
  
-vlen comes with ABSOLUTELY NO WARRANTY.  
+docolav comes with ABSOLUTELY NO WARRANTY.  
 This is free software, and you are welcome to redistribute it under  
 certain conditions. See the GNU General Public Licence for details.  
 
@@ -20,7 +20,7 @@ For source compilation you need OpenCV headers :
 * libhighgui
 
 For Debian GNU/Linux :  
-	aptitude install libopencv-dev libhighgui-dev
+`aptitude install libopencv-dev libhighgui-dev`
 
 
 Installation
