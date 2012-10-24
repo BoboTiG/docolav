@@ -1,14 +1,13 @@
 CC     = g++
 CFLAGS = -O3 -s
-LIBS   = -lm -lopencv_core -lopencv_highgui
-PREFIX = /usr/bin
+PREFIX = /usr/local/bin
 TOOL   = docolav
 DOCDIR = /usr/share/doc/${TOOL}
 MAN    = /usr/share/man/man1
 
-all: clean
+all:
 	mkdir -p bin
-	${CC} ${CFLAGS} ${LIBS} src/main.cpp -o bin/${TOOL}
+	${CC} ${CFLAGS} src/${TOOL}.cc -o bin/${TOOL}
 
 clean:
 	rm -f bin/${TOOL}

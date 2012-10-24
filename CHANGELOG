@@ -1,4 +1,12 @@
 
+*** 0.3 (20121024)
+	* suppression de la dépendance à OpenCV pour CImg
+	+ ajout de l'option de sortie "dim" pour afficher les dimensions de l'image
+	+ ajout du binaire pour GNU/Linux 32 bits
+	+ ajout des sommes de contrôle des binaires
+	^ corrections diverses dans le fichier Makefile
+
+
 *** 0.2 (20120806)
 	+ traduction en français
 	+ ajout du binaire pour GNU/Linux 64 bits

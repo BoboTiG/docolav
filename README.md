@@ -2,25 +2,13 @@
 docolav
 =======
 
-Copyright (C) 2012 by BoboTiG.
+Tous droits (C) 2012 par BoboTiG.
  
-docolav comes with ABSOLUTELY NO WARRANTY.  
-This is free software, and you are welcome to redistribute it under  
-certain conditions. See the GNU General Public Licence for details.  
+docolav est livré avec ABSOLUMENT AUCUNE GARANTIE.
+C'est une programe libre, et vous pouvez le redistribuer sous certaines
+conditions. Voir la GNU General Public Licence pour plus de détails.
 
-docolav is a tool to get the dominant color average of a picture.  
-
-
-Requirements
-------------
-
-For source compilation you need OpenCV headers :
-
-* libopencv
-* libhighgui
-
-For Debian GNU/Linux :  
-`aptitude install libopencv-dev libhighgui-dev`
+docolav détermine la couleur moyenne dominante d'une image. 
 
 
 Installation
@@ -33,4 +21,4 @@ make install
 Usage
 -----
 
-docolav [OPTION [VALUE]] FILE
+docolav [OPTION [VALEUR]] FICHIER
