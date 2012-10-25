@@ -32,6 +32,7 @@ docolav FORMAT FICHIER
 Où FORMAT est une chaîne de caractères passée à printf().  
 3 arguments sont valables, dans l'ordre : R, G puis B.
 
-Voici quelques exemples :  
+Voici quelques exemples :
+
 	docolav "R=%d G=%d B=%d" image.jpg  
 	docolav "HEX(%02X,%02X,%02X)" image.jpg
