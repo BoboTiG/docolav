@@ -1,0 +1,9 @@
+CC     = g++
+CFLAGS = -O0 -g -lm -lpthread
+TOOL   = docolav
+
+all:
+	${CC} ${CFLAGS} src\${TOOL}.cc -o {TOOL}.exe
+
+clean:
+	del ${TOOL}.exe

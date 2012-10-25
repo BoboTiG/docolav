@@ -1,4 +1,12 @@
 
+*** 0.3.1 (20121025)
+	- suppression de l'option de sortie "dim" (restons concentré sur l'objectif principal !)
+	* corrections diverses dans docolav.cc
+	* modification du comportement : docolav FORMAT FICHIER (voir README.md)
+	+ ajout du Makefile pour Windows
+	+ MàJ de CImg.h (1.5.2 => 1.5.3 rev 1.1180)
+
+
 *** 0.3 (20121024)
 	* suppression de la dépendance à OpenCV pour CImg
 	+ ajout de l'option de sortie "dim" pour afficher les dimensions de l'image

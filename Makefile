@@ -6,11 +6,10 @@ DOCDIR = /usr/share/doc/${TOOL}
 MAN    = /usr/share/man/man1
 
 all:
-	mkdir -p bin
-	${CC} ${CFLAGS} src/${TOOL}.cc -o bin/${TOOL}
+	${CC} ${CFLAGS} src/${TOOL}.cc -o ${TOOL}
 
 clean:
-	rm -f bin/${TOOL}
+	rm -f ${TOOL}
 
 help:
 	@echo make			: build ${TOOL}
@@ -19,7 +18,7 @@ help:
 	@echo make uninstall: uninstall ${TOOL} and doc files
 
 install:
-	install -s bin/${TOOL} ${PREFIX}
+	install -s ${TOOL} ${PREFIX}
 	mkdir -p ${DOCDIR}
 	chmod 755 ${DOCDIR}
 	install -m 644 -t ${DOCDIR} CHANGELOG LICENSE README.md REQUIREMENTS
