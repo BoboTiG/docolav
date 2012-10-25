@@ -1,5 +1,5 @@
 CC     = g++
-CFLAGS = -O3 -s
+CFLAGS = -O3 -s -lm -lpthread
 PREFIX = /usr/local/bin
 TOOL   = docolav
 DOCDIR = /usr/share/doc/${TOOL}

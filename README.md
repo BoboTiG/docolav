@@ -11,6 +11,12 @@ conditions. Voir la GNU General Public Licence pour plus de détails.
 docolav détermine la couleur moyenne dominante d'une image. 
 
 
+Dépendance
+----------
+
+ImageMagick
+
+
 Installation
 ------------
 
