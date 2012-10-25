@@ -4,6 +4,7 @@
 	* corrections diverses dans docolav.cc
 	* modification du comportement : docolav FORMAT FICHIER (voir README.md)
 	+ ajout du Makefile pour Windows
+	+ ajout du binaire pour Windows 32 et 64 bits
 	+ MàJ de CImg.h (1.5.2 => 1.5.3 rev 1.1180)
 
 
