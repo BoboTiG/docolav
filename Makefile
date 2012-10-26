@@ -1,6 +1,6 @@
 CC     = g++
 CFLAGS = -O3 -s -lm -lpthread
-PREFIX = /usr/local/bin
+PREFIX = /usr/bin
 TOOL   = docolav
 DOCDIR = /usr/share/doc/${TOOL}
 MAN    = /usr/share/man/man1
