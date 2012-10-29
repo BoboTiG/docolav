@@ -1,5 +1,5 @@
 CC     = g++
-CFLAGS = -O0 -g -lm -lpthread
+CFLAGS = -O3 -s -lm -lpthread
 TOOL   = docolav
 
 all:
