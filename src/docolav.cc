@@ -2,7 +2,7 @@
 /* =============================================================== */
 /*  $Author: BoboTiG <bobotig@gmail.com> $                         */
 /*  $Id: docolav $                                                 */
-/*  $Revision: 5 $, $Date: 2012/10/25 $                            */
+/*  $Revision: 6 $, $Date: 2012/10/29 $                            */
 /*  $Source: http://www.bobotig.fr $, $Date: 2012/01/31 $          */
 /*                                                                 */
 /*  docolav détermine la couleur moyenne dominante d'une image.    */
@@ -17,7 +17,7 @@ using namespace cimg_library;
 int main(int argc, char *argv[]) {
 	unsigned int width = 0, height = 0, total = 0;
 	size_t r = 0, g = 0, b = 0;
-	char filename[MAX_FILENAME_LEN], format[MAX_FORMAT_LEN];
+	char filename[MAX_FILENAME_LEN + 1], format[MAX_FORMAT_LEN + 1];
 	
 	if ( argv[1] ) {
 		if ( ! strncmp(argv[1], "-h", 2) || ! strncmp(argv[1], "--help", 6) ) {
@@ -29,7 +29,10 @@ int main(int argc, char *argv[]) {
 		} else {
 			if ( argv[2] ) {
 				strncpy(format, argv[1], MAX_FORMAT_LEN);
+				format[MAX_FORMAT_LEN] = 0;
 				strncpy(filename, argv[2], MAX_FILENAME_LEN);
+				filename[MAX_FILENAME_LEN] = 0;
+				printf("%d\n", strlen(format));
 			} else {
 				usage();
 				return 1;
@@ -40,7 +43,7 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 	
-	// Chargement de l'image et récupérations des infos
+	// Chargement de l'image et récupération des infos
 	try {
 		CImg<unsigned char> picture(filename);
 		width = picture.width();

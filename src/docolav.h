@@ -3,7 +3,7 @@
  * \file docolav.h
  * \brief Part of docolav.
  * \author BoboTiG
- * \date 2012.10.25
+ * \date 2012.10.29
  */
 
 #ifndef DOCOLAV_H_
@@ -11,7 +11,7 @@
 
 
 // Constantes
-#define DOCOLAV_VERSION  "0.3.1"
+#define DOCOLAV_VERSION  "0.3.2-dev"
 #define MAX_FILENAME_LEN 256
 #define MAX_FORMAT_LEN   32
 #define cimg_verbosity   0  // Non verbeux

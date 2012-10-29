@@ -34583,6 +34583,7 @@ namespace cimg_library_suffixed {
                  !cimg::strcasecmp(ext,"ptx") ||
                  !cimg::strcasecmp(ext,"raf") ||
                  !cimg::strcasecmp(ext,"srf")) load_dcraw_external(filename);
+        else if (!cimg::strcasecmp(ext,"gif")) load_gif_external(filename);
 
         // 3d binary formats
         else if (!cimg::strcasecmp(ext,"dcm") ||
@@ -37093,6 +37094,24 @@ namespace cimg_library_suffixed {
     //! Load image sequence using FFMPEG's external tool 'ffmpeg' \newinstance.
     static CImg<T> get_load_ffmpeg_external(const char *const filename, const char axis='z', const float align=0) {
       return CImgList<T>().load_ffmpeg_external(filename).get_append(axis,align);
+    }
+
+    //! Load gif file, using Imagemagick or GraphicsMagicks's external tools.
+    /**
+      \param filename Filename, as a C-string.
+      \param use_graphicsmagick Tells if GraphicsMagick's tool 'gm' is used instead of ImageMagick's tool 'convert'.
+      \param axis Appending axis, if file contains multiple images. Can be <tt>{ 'x' | 'y' | 'z' | 'c' }</tt>.
+      \param align Appending alignment.
+    **/
+    CImg<T>& load_gif_external(const char *const filename,
+                               const char axis='z', const float align=0) {
+      return get_load_gif_external(filename,axis,align).move_to(*this);
+    }
+
+    //! Load gif file, using ImageMagick or GraphicsMagick's external tool 'convert' \newinstance.
+    static CImg<T> get_load_gif_external(const char *const filename,
+                                         const char axis='z', const float align=0) {
+      return CImgList<T>().load_gif_external(filename).get_append(axis,align);
     }
 
     //! Load image using GraphicsMagick's external tool 'gm'.
@@ -43179,6 +43198,7 @@ namespace cimg_library_suffixed {
 #endif
         if (!cimg::strcasecmp(ext,"tif") ||
             !cimg::strcasecmp(ext,"tiff")) load_tiff(filename);
+        else if (!cimg::strcasecmp(ext,"gif")) load_gif_external(filename);
         else if (!cimg::strcasecmp(ext,"cimg") ||
                  !cimg::strcasecmp(ext,"cimgz") ||
                  !*ext) load_cimg(filename);
@@ -43975,6 +43995,63 @@ namespace cimg_library_suffixed {
       return CImgList<T>().load_ffmpeg_external(filename);
     }
 
+    //! Load gif file, using ImageMagick or GraphicsMagick's external tools.
+    /**
+      \param filename Filename to read data from.
+      \param use_graphicsmagick Tells if GraphicsMagick's tool 'gm' is used instead of ImageMagick's tool 'convert'.
+    **/
+    CImgList<T>& load_gif_external(const char *const filename) {
+      if (!filename)
+        throw CImgArgumentException(_cimglist_instance
+                                    "load_gif_external(): Specified filename is (null).",
+                                    cimglist_instance);
+      std::fclose(cimg::fopen(filename,"rb"));            // Check if file exists.
+      if (!_load_gif_external(filename,false)) _load_gif_external(filename,true);
+      if (is_empty())
+        throw CImgIOException(_cimglist_instance
+                              "load_gif_external(): Failed to open file '%s'.",
+                              cimglist_instance,filename);
+      return *this;
+    }
+
+    CImgList<T>& _load_gif_external(const char *const filename, const bool use_graphicsmagick=false) {
+      char command[1024] = { 0 }, filetmp[512] = { 0 }, filetmp2[512] = { 0 };
+      std::FILE *file = 0;
+      do {
+        cimg_snprintf(filetmp,sizeof(filetmp),"%s%c%s",cimg::temporary_path(),cimg_file_separator,cimg::filenamerand());
+        if (use_graphicsmagick) cimg_snprintf(filetmp2,sizeof(filetmp2),"%s.png.0",filetmp);
+        else cimg_snprintf(filetmp2,sizeof(filetmp2),"%s-0.png",filetmp);
+        if ((file=std::fopen(filetmp2,"rb"))!=0) cimg::fclose(file);
+      } while (file);
+#if cimg_OS!=2
+      if (use_graphicsmagick) cimg_snprintf(command,sizeof(command),"%s convert \"%s\" %s.png >/dev/null 2>&1",cimg::graphicsmagick_path(),filename,filetmp);
+      else cimg_snprintf(command,sizeof(command),"%s \"%s\" %s.png >/dev/null 2>&1",cimg::imagemagick_path(),filename,filetmp);
+#else
+      if (use_graphicsmagick) cimg_snprintf(command,sizeof(command),"\"%s convert \"%s\" %s.png\" >NUL 2>&1",cimg::graphicsmagick_path(),filename,filetmp);
+      else cimg_snprintf(command,sizeof(command),"\"%s \"%s\" %s.png\" >NUL 2>&1",cimg::imagemagick_path(),filename,filetmp);
+#endif
+      cimg::system(command,0);
+      const unsigned int omode = cimg::exception_mode();
+      cimg::exception_mode() = 0;
+      assign();
+      unsigned int i = 0;
+      for (bool stopflag = false; !stopflag; ++i) {
+        if (use_graphicsmagick) cimg_snprintf(filetmp2,sizeof(filetmp2),"%s.png.%u",filetmp,i);
+        else cimg_snprintf(filetmp2,sizeof(filetmp2),"%s-%u.png",filetmp,i);
+        CImg<T> img;
+        try { img.load_png(filetmp2); }
+        catch (CImgException&) { stopflag = true; }
+        if (img) { img.move_to(*this); std::remove(filetmp2); }
+      }
+      cimg::exception_mode() = omode;
+      return *this;
+    }
+
+    //! Load gif file, using ImageMagick or GraphicsMagick's external tools \newinstance.
+    static CImgList<T> get_load_gif_external(const char *const filename) {
+      return CImgList<T>().load_gif_external(filename);
+    }
+
     //! Load a gzipped list, using external tool 'gunzip'.
     /**
       \param filename Filename to read data from.
@@ -44420,7 +44497,7 @@ namespace cimg_library_suffixed {
                               cimglist_instance,
                               filename);
       else cimg::fclose(file);
-      cimglist_for_in(*this,1,filenames._width-2,l) std::remove(filenames[l]);
+      cimglist_for_in(*this,1,filenames._width-1,l) std::remove(filenames[l]);
       return *this;
     }
 

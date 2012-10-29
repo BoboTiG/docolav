@@ -1,11 +1,23 @@
+=== Legend ===
+	+ : added
+	- : deleted
+	^ : bug fixed
+	* : optimization
+	. : information
+
+
+*** 0.3.2-dev (20121029)
+	^ correction des copies des arguments
+	. MàJ de CImg.h (1.5.3 rev 1.1180 => 1.5.3 rev 1.1189)
+
 
 *** 0.3.1 (20121025)
 	- suppression de l'option de sortie "dim" (restons concentré sur l'objectif principal !)
-	* corrections diverses dans docolav.cc
+	^ corrections diverses dans docolav.cc
 	* modification du comportement : docolav FORMAT FICHIER (voir README.md)
 	+ ajout du Makefile pour Windows
 	+ ajout du binaire pour Windows 32 et 64 bits
-	+ MàJ de CImg.h (1.5.2 => 1.5.3 rev 1.1180)
+	. MàJ de CImg.h (1.5.2 => 1.5.3 rev 1.1180)
 
 
 *** 0.3 (20121024)
