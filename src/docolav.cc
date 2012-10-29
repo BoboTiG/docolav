@@ -2,7 +2,7 @@
 /* =============================================================== */
 /*  $Author: BoboTiG <bobotig@gmail.com> $                         */
 /*  $Id: docolav $                                                 */
-/*  $Revision: 6 $, $Date: 2012/10/29 $                            */
+/*  $Revision: 7 $, $Date: 2012/10/29 $                            */
 /*  $Source: http://www.bobotig.fr $, $Date: 2012/01/31 $          */
 /*                                                                 */
 /*  docolav détermine la couleur moyenne dominante d'une image.    */
@@ -32,7 +32,6 @@ int main(int argc, char *argv[]) {
 				format[MAX_FORMAT_LEN] = 0;
 				strncpy(filename, argv[2], MAX_FILENAME_LEN);
 				filename[MAX_FILENAME_LEN] = 0;
-				printf("%d\n", strlen(format));
 			} else {
 				usage();
 				return 1;
