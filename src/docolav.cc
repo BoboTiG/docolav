@@ -2,14 +2,14 @@
 /* =============================================================== */
 /*  $Author: BoboTiG <bobotig@gmail.com> $                         */
 /*  $Id: docolav $                                                 */
-/*  $Revision: 7 $, $Date: 2012/10/29 $                            */
+/*  $Revision: 8 $, $Date: 2013/01/30 $                            */
 /*  $Source: http://www.bobotig.fr $, $Date: 2012/01/31 $          */
 /*                                                                 */
 /*  docolav détermine la couleur moyenne dominante d'une image.    */
 /* =============================================================== */
 
 
-#include "docolav.h"
+#include "./docolav.h"
 using namespace cimg_library;
 
 
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
 }
 
 void help() {
-	printf("Tous droits (C) 2012 par BoboTiG.\n\
+	printf("Tous droits (C) 2012-2013 par BoboTiG.\n\
 \n\
 docolav est livré avec ABSOLUMENT AUCUNE GARANTIE.\n\
 C'est un programme libre, et vous pouvez le redistribuer sous certaines\n\

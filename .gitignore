@@ -1,2 +1,5 @@
+archives/
+src/CImg.h_*
 src/CImg_*
 src/maj-cimg.sh
+mkchangelog.pl

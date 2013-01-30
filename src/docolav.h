@@ -3,7 +3,7 @@
  * \file docolav.h
  * \brief Part of docolav.
  * \author BoboTiG
- * \date 2012.10.29
+ * \date 2013.01.30
  */
 
 #ifndef DOCOLAV_H_
@@ -18,7 +18,7 @@
 #define cimg_display     0  // Désactiver les possibilités d'affichage
 
 // La bibliothèque
-#include "CImg.h"
+#include "./CImg.h"
 
 // Prototypes
 void help();

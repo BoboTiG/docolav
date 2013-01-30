@@ -1,5 +1,6 @@
 CC     = g++
 CFLAGS = -O3 -s -lm -lpthread
+CFLAGS += -Wfatal-errors -Werror -Wall -pedantic -Wextra -Weffc++
 PREFIX = /usr/bin
 TOOL   = docolav
 DOCDIR = /usr/share/doc/${TOOL}
