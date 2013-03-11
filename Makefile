@@ -1,6 +1,6 @@
 CC     = g++
 CFLAGS = -O3 -s -lm -lpthread
-CFLAGS += -Wfatal-errors -Werror -Wall -pedantic -Wextra -Weffc++
+CFLAGS += -Wall -pedantic
 PREFIX = /usr/bin
 TOOL   = docolav
 DOCDIR = /usr/share/doc/${TOOL}
@@ -24,6 +24,11 @@ install:
 	chmod 755 ${DOCDIR}
 	install -m 644 -t ${DOCDIR} CHANGELOG LICENSE README.md REQUIREMENTS
 	install -m 644 -t ${MAN} ${TOOL}.1.gz
+
+man:
+	@rm docolav.1.gz
+	help2man docolav >docolav.1.gz
+
 
 uninstall:
 	rm -f ${PREFIX}/${TOOL}

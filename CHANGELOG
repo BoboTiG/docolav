@@ -6,10 +6,11 @@
 	. : information
 
 
-*** 0.3.2-dev (20130130)
-	^ correction des copies des arguments
+*** 0.3.2 (20130311)
+	^ gestion des arguments
 	^ options de compilation pour Windows (sous XP, tout bloquait)
-	. MàJ de CImg.h (1.5.3 rev 1.1180 => 1.5.4 rev 1.1214)
+	+ message de CImg en cas d'erreur lors du traitement d'une image
+	. MàJ de CImg.h (1.5.3 rev 1.1180 => 1.5.5 rev 1.1232)
 
 
 *** 0.3.1 (20121025)

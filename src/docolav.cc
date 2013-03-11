@@ -2,7 +2,7 @@
 /* =============================================================== */
 /*  $Author: BoboTiG <bobotig@gmail.com> $                         */
 /*  $Id: docolav $                                                 */
-/*  $Revision: 8 $, $Date: 2013/01/30 $                            */
+/*  $Revision: 9 $, $Date: 2013/03/11 $                            */
 /*  $Source: http://www.bobotig.fr $, $Date: 2012/01/31 $          */
 /*                                                                 */
 /*  docolav détermine la couleur moyenne dominante d'une image.    */
@@ -18,29 +18,27 @@ int main(int argc, char *argv[]) {
 	unsigned int width = 0, height = 0, total = 0;
 	size_t r = 0, g = 0, b = 0;
 	char filename[MAX_FILENAME_LEN + 1], format[MAX_FORMAT_LEN + 1];
-	
-	if ( argv[1] ) {
-		if ( ! strncmp(argv[1], "-h", 2) || ! strncmp(argv[1], "--help", 6) ) {
-			help();
-			return 0;
-		} else if ( ! strncmp(argv[1], "-v", 2) || ! strncmp(argv[1], "--version", 9) ) {
-			version();
-			return 0;
-		} else {
-			if ( argv[2] ) {
-				strncpy(format, argv[1], MAX_FORMAT_LEN);
-				format[MAX_FORMAT_LEN] = 0;
-				strncpy(filename, argv[2], MAX_FILENAME_LEN);
-				filename[MAX_FILENAME_LEN] = 0;
-			} else {
-				usage();
-				return 1;
-			}
-		}
-	} else {
+
+	// Traitement des arguments
+	if ( !argv[1] ) {
 		usage();
 		return 0;
 	}
+	if ( !strcmp(argv[1], "-h") || !strcmp(argv[1], "--help") ) {
+		help();
+		return 0;
+	} else if ( !strcmp(argv[1], "-v") || !strcmp(argv[1], "--version") ) {
+		version();
+		return 0;
+	}
+	if ( !argv[2] ) {
+		usage();
+		return 0;
+	}
+	strncpy(format, argv[1], MAX_FORMAT_LEN);
+	format[MAX_FORMAT_LEN] = 0;
+	strncpy(filename, argv[2], MAX_FILENAME_LEN);
+	filename[MAX_FILENAME_LEN] = 0;
 	
 	// Chargement de l'image et récupération des infos
 	try {
@@ -63,10 +61,11 @@ int main(int argc, char *argv[]) {
 			}
 		}
 	} catch ( CImgIOException &e ) {
-		printf("Impossible de charger l'image : %s\n", filename);
+		fprintf(stderr, "Impossible de charger l'image : %s\n", filename);
+		fprintf(stderr, "%s\n", e.what());
 		return 1;
 	}
-	// This is it !
+	// This is it!
 	total = width * height;
 	r /= total;
 	g /= total;
@@ -105,7 +104,7 @@ void usage() {
 }
 
 void version() {
-	printf("docolav v%s\n", DOCOLAV_VERSION);
-	printf(" CImg.h v%d.%d.%d\n",
+	printf("docolav %s\n", DOCOLAV_VERSION);
+	printf(" CImg.h %d.%d.%d\n",
 		(cimg_version / 100), (cimg_version % 100 / 10), (cimg_version % 10));
 }
