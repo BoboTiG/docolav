@@ -13,10 +13,11 @@ clean:
 	rm -f ${TOOL}
 
 help:
-	@echo make			: build ${TOOL}
-	@echo make clean	: purge the folder from previous built
-	@echo make install	: install ${TOOL} and doc files
-	@echo make uninstall: uninstall ${TOOL} and doc files
+	@echo make			: compile ${TOOL}
+	@echo make clean	: purge les fichiers de compilation
+	@echo make install	: installe ${TOOL} et sa docomentation
+	@echo make man    	: génère la page du manuel
+	@echo make uninstall: supprime ${TOOL} et sa documentation
 
 install:
 	install -s ${TOOL} ${PREFIX}
@@ -26,8 +27,8 @@ install:
 	install -m 644 -t ${MAN} ${TOOL}.1.gz
 
 man:
-	@rm docolav.1.gz
-	help2man docolav >docolav.1.gz
+	@rm -f docolav.1.gz
+	help2man -L=utf-8 -N --name="couleur moyenne dominante d'une image" ./docolav -o docolav.1.gz
 
 
 uninstall:
