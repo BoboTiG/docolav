@@ -2,7 +2,7 @@
 docolav
 =======
 
-Tous droits (C) 2012 par BoboTiG.
+Tous droits (C) 2012-2013 par BoboTiG.
  
 docolav est livré avec ABSOLUMENT AUCUNE GARANTIE.
 C'est un programme libre, et vous pouvez le redistribuer sous certaines
