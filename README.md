@@ -20,8 +20,8 @@ ImageMagick
 Installation
 ------------
 
-make
-make install
+	make
+	sudo make install
 
 
 Usage
