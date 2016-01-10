@@ -13,11 +13,20 @@ clean:
 	rm -f ${TOOL}
 
 help:
-	@echo make			: compile ${TOOL}
-	@echo make clean	: purge les fichiers de compilation
-	@echo make install	: installe ${TOOL} et sa docomentation
-	@echo make man    	: génère la page du manuel
-	@echo make uninstall: supprime ${TOOL} et sa documentation
+	@echo make
+	@echo "  compile ${TOOL}"
+	@echo
+	@echo make clean
+	@echo "  purge les fichiers de compilation"
+	@echo
+	@echo make install
+	@echo "  installe ${TOOL} et sa docomentation"
+	@echo
+	@echo make man
+	@echo "  génère la page du manuel"
+	@echo
+	@echo make uninstall
+	@echo "  supprime ${TOOL} et sa documentation"
 
 install:
 	install -s ${TOOL} ${PREFIX}
