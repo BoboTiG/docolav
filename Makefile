@@ -1,5 +1,5 @@
 CC     = g++
-CFLAGS = -O3 -s -lm -lpthread
+CFLAGS = -march=native -O3 -s -lm -lpthread -Wfatal-errors -Werror -std=c++11
 CFLAGS += -Wall -pedantic
 PREFIX = /usr/bin
 TOOL   = docolav
@@ -20,7 +20,7 @@ help:
 	@echo "  purge les fichiers de compilation"
 	@echo
 	@echo make install
-	@echo "  installe ${TOOL} et sa docomentation"
+	@echo "  installe ${TOOL} et sa documentation"
 	@echo
 	@echo make man
 	@echo "  génère la page du manuel"

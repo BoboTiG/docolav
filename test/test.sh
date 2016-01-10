@@ -1,7 +1,7 @@
 #!/bin/sh
 
 super_test() {
-	echo -n "\"../docolav '%d-%d-%d' $1\" [attendu : $2] => "
+	echo -n "\"docolav '%d-%d-%d' $1\" [attendu : $2] => "
 	couleurs=$(../docolav '%d-%d-%d' $1)
 	echo -n "$couleurs : "
 	if [ "$couleurs" = "$2" ]; then
@@ -23,7 +23,6 @@ super_test image.tga 161-174-73
 echo
 echo "Formats exotiques"
 super_test image.ico 161-174-73
-super_test image.dcm 160-173-72
 super_test image.xpm 160-173-72
 super_test image.pnm 160-173-72
 super_test image.pcx 160-173-72

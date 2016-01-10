@@ -12,7 +12,6 @@ call :super_test image.tga 161-174-73
 echo.
 echo Formats exotiques
 call :super_test image.ico 161-174-73
-call :super_test image.dcm 160-173-72
 call :super_test image.xpm 160-173-72
 call :super_test image.pnm 160-173-72
 call :super_test image.pcx 160-173-72
