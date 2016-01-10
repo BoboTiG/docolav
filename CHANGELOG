@@ -6,6 +6,13 @@
 	. : information
 
 
+*** 0.3.3 (20160110)
+	* utilisation totale du C++
+	* options de compilation -march=native et -std=c++11
+	- test/image.dcm
+	. MàJ de CImg.h (1.5.5 rev 1.1232 => 1.6.9)
+
+
 *** 0.3.2 (20130311)
 	^ gestion des arguments
 	^ options de compilation pour Windows (sous XP, tout bloquait)
